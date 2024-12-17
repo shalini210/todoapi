@@ -11,8 +11,6 @@ app.get("/",(req,res)=>
 {
     res.sendFile(__dirname+"/demo.html")
 })
-
-
 app.post('/profile', upload.single('avatar'), function (req, res) {
     res.send("saved");
   // req.file is the `avatar` file
