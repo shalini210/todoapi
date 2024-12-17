@@ -3,6 +3,10 @@ const express = require('express')
 const upload =require("./forMulter")
 
 const app = express()
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
+
 app.get("/",(req,res)=>
 {
     res.sendFile(__dirname+"/demo.html")

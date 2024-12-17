@@ -1,13 +1,21 @@
 const multer = require('multer');
 
 // Set up storage for uploaded files
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, __dirname+'/upload/');
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + '-' + file.originalname);
+//   }
+// });
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'upload/');
+  destination: function(req, file, cb) {
+  cb(null, 'uploads/');
   },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
+  filename: function(req, file, cb) {
+   cb(null, new Date().toISOString().replace(/:/g, '-')+ file.originalname);
+    }
 });
 
 // Create the multer instance
