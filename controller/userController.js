@@ -14,8 +14,19 @@ exports.insertuser =async (t)=>
   let msg ="user not added"
    await user.save()
     .then(()=>msg="user added")
-    return msg
-    
+    return msg    
+}
+exports.addprofile = async(u)=>
+{
+    let newdata = { bloodType:u.bloodType,
+        occupation:u.occupation,
+        address:u.address,
+        dob:u.dob}
+        let condition = {_id:u.userid}
+        await userModel.updateOne(condition,{$set:newdata})
+        .then(()=>console.log("updated"))
+        .catch(()=>console.log("not updated"))
+
 }
 exports.checkLogin = async(email,pwd)=>
 {
@@ -23,7 +34,8 @@ exports.checkLogin = async(email,pwd)=>
     let data = await userModel.find(conditon)
     if(data.length>0)
     {
-        return true;
+        console.log(data);
+        return data;
     }
     else
     {

@@ -6,6 +6,11 @@ router.post("/",async (req,res)=>
   let m =await userController.insertuser(req.body);
     res.send(m);
 })
+router.put("/profile",async(req,res)=>
+{
+    let m = await  userController.addprofile(req.body);
+    res.send("updated")
+})
 router.post("/login",async (req,res)=>
 {
     let r =await userController.checkLogin(req.body.email,req.body.pwd)

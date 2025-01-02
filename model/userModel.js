@@ -3,7 +3,11 @@ const schema = mongoose.Schema({
     username:String,
     pwd :String,
     email:String,
-    contactno:String
+    contactno:String,
+    bloodType:String,
+    occupation:String,
+    address:String,
+    dob:Date
 })
 const user = new mongoose.model("user",schema);
 module.exports = user;
