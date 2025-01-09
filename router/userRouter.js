@@ -1,15 +1,20 @@
 const express = require("express")
 const router = express.Router();
 const userController = require("../controller/userController");
+const upload=require("../forMulter")
 router.post("/",async (req,res)=>
 {
   let m =await userController.insertuser(req.body);
     res.send(m);
 })
-router.put("/profile",async(req,res)=>
+router.put("/profile",upload.single('img'),async(req,res)=>
 {
-    let m = await  userController.addprofile(req.body);
-    res.send("updated")
+    // app.post('/profile', upload.single('avatar'),
+    //  function (req, res) {
+        console.log(req.file.filename)
+        res.send("saved");
+    // let m = await  userController.addprofile(req.body);
+    // res.send("updated")
 })
 router.post("/login",async (req,res)=>
 {
@@ -28,6 +33,7 @@ router.delete("/",async(req,res)=>
 })
 router.put("/",async(req,res)=>
 {
+    
     let msg = await userController.updateuser(req.body.name)
     res.send(msg);
 })
