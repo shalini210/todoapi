@@ -7,7 +7,8 @@ const schema = mongoose.Schema({
     bloodType:String,
     occupation:String,
     address:String,
-    dob:Date
+    dob:Date,
+    img:String
 })
 const user = new mongoose.model("user",schema);
 module.exports = user;

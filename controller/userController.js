@@ -16,12 +16,14 @@ exports.insertuser =async (t)=>
     .then(()=>msg="user added")
     return msg    
 }
-exports.addprofile = async(u)=>
+exports.addprofile = async(u,imgpath)=>
 {
     let newdata = { bloodType:u.bloodType,
         occupation:u.occupation,
         address:u.address,
-        dob:u.dob}
+        dob:u.dob,
+    img:imgpath}
+
         let condition = {_id:u.userid}
         await userModel.updateOne(condition,{$set:newdata})
         .then(()=>console.log("updated"))
@@ -56,7 +58,6 @@ exports.updateuser = async (name)=>
 {
     let t  = {username:name}
     let s = {status:'complete'}
-
     let msg = "user status not updated";
     await userModel.updateOne(t,{$set:s})
     .then(()=>msg = "record updated")
@@ -65,5 +66,10 @@ exports.updateuser = async (name)=>
 exports.getallusers =async ()=>
 {
 let data = await userModel.find();
+return data;
+}
+exports.getUser = async (id)=>
+{
+let data = await userModel.find({_id:id});
 return data;
 }
