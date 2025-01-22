@@ -14,8 +14,8 @@ router.get("/:id",async (req,res)=>
 {
     let id = req.params.id;
     let data = await userController.getUser(id)
-    let p = (path.join(__dirname,'..',('/uploads/'+data[0].img)))
-  data[0].img= p;
+//     let p = (path.join(__dirname,'..',('/uploads/'+data[0].img)))
+//   data[0].img 
   res.send(data[0])
     // res.status(200).sendfile(p) //+"../uploads/2025-01-10T04-52-19.240Zdevelopment.jpg");
     // res.sendFile(p)
@@ -27,7 +27,7 @@ router.put("/profile",upload.single('img'),async(req,res)=>
     //  function (req, res) {
         console.log(req.file.filename)
         let m = await  userController.addprofile(req.body,req.file.filename);
-        res.send("saved");
+        res.send(m);
     // let m = await  userController.addprofile(req.body);
     // res.send("updated")
 })

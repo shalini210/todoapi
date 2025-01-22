@@ -23,12 +23,14 @@ exports.addprofile = async(u,imgpath)=>
         address:u.address,
         dob:u.dob,
     img:imgpath}
-
+let data =""
         let condition = {_id:u.userid}
         await userModel.updateOne(condition,{$set:newdata})
-        .then(()=>console.log("updated"))
+        .then(async ()=>{
+         data=   await userModel.find(condition)
+        })
         .catch(()=>console.log("not updated"))
-
+        return data;
 }
 exports.checkLogin = async(email,pwd)=>
 {
